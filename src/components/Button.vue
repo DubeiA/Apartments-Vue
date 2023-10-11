@@ -22,11 +22,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/scss/utils.scss";
 .btn {
   display: inline-block;
   font-size: 18px;
-  background-color: #ff662d;
-  color: #fff;
+  background-color: $orange;
+  color: $white;
   cursor: pointer;
   min-width: 220px;
   border: 1px solid transparent;
@@ -34,8 +35,8 @@ export default {
 
   &--outlined {
     background: none;
-    border: 1px solid #ff662d;
-    color: #ff662d;
+    border: 1px solid $orange;
+    color: $orange;
   }
 }
 </style>

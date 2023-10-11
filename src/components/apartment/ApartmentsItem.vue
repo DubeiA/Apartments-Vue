@@ -1,22 +1,25 @@
 <template>
-  <div class="apartment-item">
-    <div class="apartment-item__inner">
-      <img :src="imgSrc" alt="" class="apartment-item__photo" />
-      <div class="apartment-item__content">
-        <p class="apartment-item__description">
+  <div class="apartments-item">
+    <div class="apartments-item__inner">
+      <img :src="imgSrc" alt="" class="apartments-item__photo" />
+      <div class="apartments-item__content">
+        <p class="apartments-item__description">
           {{ descr }}
         </p>
-        <div class="apartment-item__rating">
+        <div class="apartments-item__rating">
           <StarRating :rating="rating" />
         </div>
-        <div class="apartment-item_price">UAH {{ price }}</div>
+        <div class="apartments-item__price">UAH {{ price }}</div>
+        <a href="https://facebook.com" @click.prevent.stop="handleLinkClick"
+          >facebook</a
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import StarRating from "../StarRating.vue";
+import StarRating from "../StarRating";
 
 export default {
   name: "ApartmentsItem",
@@ -41,14 +44,21 @@ export default {
       default: "",
     },
   },
+  methods: {
+    handleLinkClick() {
+      console.log("click Facebook");
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.apartment-item {
+@import "../../assets/scss/utils.scss";
+.apartments-item {
   position: relative;
   max-width: 350px;
-  padding: 0 20px;
+  padding: 0 15px;
+  margin-bottom: 30px;
 
   &__inner {
     position: relative;
@@ -59,9 +69,9 @@ export default {
     padding: 20px;
     opacity: 0;
     transition: opacity 0.4s;
-    background-color: rgba(#0f1d2d, 0.7);
+    background: $bgr-item;
     min-height: 200px;
-    color: #fff;
+    color: $white;
     text-align: left;
     line-height: 1.4;
     cursor: pointer;
@@ -74,10 +84,14 @@ export default {
 
   &__description {
     margin-bottom: 20px;
+    max-height: calc(1em * 1.4 * 4);
+    overflow: hidden;
   }
+
   &__rating {
     margin-bottom: 20px;
   }
+
   &__price {
     font-size: 20px;
     font-weight: 600;

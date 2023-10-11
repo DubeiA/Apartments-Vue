@@ -1,45 +1,50 @@
 <template>
   <div :id="$style.app">
-    <ApartmentsItem
-      :descr="apartment.descr"
-      :price="apartment.price"
-      :rating="apartment.rating"
-      imgSrc="https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg"
+    <h2>{{ text }}</h2>
+    <CustomInput
+      :value="text"
+      @input="(event) => (text = event.target.value)"
     />
+
+    <ApartmentsList :items="apartments">
+      <template v-slot:apartment="{ apartment }">
+        <ApartmentsItem
+          :key="apartment.id"
+          :descr="apartment.descr"
+          :rating="apartment.rating"
+          :imgSrc="apartment.imgUrl"
+          :price="apartment.price"
+          @click="handleItemClick"
+        />
+      </template>
+    </ApartmentsList>
   </div>
-  <!-- <Btn @click="increment">Click me</Btn> -->
 </template>
 
 <script>
-// import Btn from "./components/Button";
+import ApartmentsList from "./components/apartment/ApartmentsList";
 import ApartmentsItem from "./components/apartment/ApartmentsItem";
+import apartments from "./components/apartment/apartments";
+import CustomInput from "./components/shared/CustomInput";
 
 export default {
   name: "App",
   components: {
-    // Btn,
+    ApartmentsList,
     ApartmentsItem,
+    CustomInput,
   },
   data() {
     return {
-      apartment: {
-        id: "2p3oij423ij5235ijp3223ijp",
-        title:
-          "Aut qui adipisci distinctio maiores molestiae sit est inventore vero.",
-        descr:
-          "Non perferendis rerum a in nisi exercitationem dolorum perferendis. Eligendi sit error sed a. Facere maiores sit adipisci sete est inventore vero",
-        price: 2032,
-        rating: 4.5,
-        location: {
-          city: "Kherson",
-        },
-        owner: {
-          name: "Ellen",
-          phone: "115-355-5652",
-          email: "Tracey.Morar86@hotmail.com",
-        },
-      },
+      text: "",
+      apartments,
     };
+  },
+  methods: {
+    handleItemClick() {
+      console.log("Click item");
+      // console.log(event.target);
+    },
   },
 };
 </script>
