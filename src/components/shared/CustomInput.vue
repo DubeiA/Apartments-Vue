@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets//scss/utils.scss";
+@import "../../assets/scss/utils.scss";
 .custom-input {
   min-height: 40px;
   border: 2px solid $orange;
@@ -20,5 +20,11 @@ export default {
   outline: none;
   line-height: inherit;
   padding: 8px 15px;
+  max-width: 220px;
+  width: 100%;
+
+  &::placeholder {
+    color: inherit;
+  }
 }
 </style>

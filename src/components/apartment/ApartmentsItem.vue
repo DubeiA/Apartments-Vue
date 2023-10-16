@@ -10,9 +10,10 @@
           <StarRating :rating="rating" />
         </div>
         <div class="apartments-item__price">UAH {{ price }}</div>
-        <a href="https://facebook.com" @click.prevent.stop="handleLinkClick"
-          >facebook</a
-        >
+        <router-link
+          :to="{ name: 'about', params: { id }, query: { name: 'Jonh' } }"
+          class="apartments-item__link"
+        ></router-link>
       </div>
     </div>
   </div>
@@ -27,6 +28,10 @@ export default {
     StarRating,
   },
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     descr: {
       type: String,
       default: "",
@@ -56,7 +61,7 @@ export default {
 @import "../../assets/scss/utils.scss";
 .apartments-item {
   position: relative;
-  max-width: 350px;
+  max-width: 33.333%;
   padding: 0 15px;
   margin-bottom: 30px;
 
@@ -84,7 +89,7 @@ export default {
 
   &__description {
     margin-bottom: 20px;
-    max-height: calc(1em * 1.4 * 4);
+    max-height: calc(1em * 1.4 * 3);
     overflow: hidden;
   }
 
@@ -104,6 +109,13 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  &__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

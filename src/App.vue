@@ -1,61 +1,37 @@
 <template>
-  <div :id="$style.app">
-    <h2>{{ text }}</h2>
-    <CustomInput
-      :value="text"
-      @input="(event) => (text = event.target.value)"
-    />
-
-    <ApartmentsList :items="apartments">
-      <template v-slot:apartment="{ apartment }">
-        <ApartmentsItem
-          :key="apartment.id"
-          :descr="apartment.descr"
-          :rating="apartment.rating"
-          :imgSrc="apartment.imgUrl"
-          :price="apartment.price"
-          @click="handleItemClick"
-        />
-      </template>
-    </ApartmentsList>
+  <div id="app">
+    <div class="content">
+      <Header />
+      <router-view></router-view>
+    </div>
+    <Footer />
   </div>
 </template>
 
 <script>
-import ApartmentsList from "./components/apartment/ApartmentsList";
-import ApartmentsItem from "./components/apartment/ApartmentsItem";
-import apartments from "./components/apartment/apartments";
-import CustomInput from "./components/shared/CustomInput";
+import Footer from "./components/shared/Footer.vue";
+import Header from "./components/shared/Header.vue";
 
 export default {
   name: "App",
   components: {
-    ApartmentsList,
-    ApartmentsItem,
-    CustomInput,
-  },
-  data() {
-    return {
-      text: "",
-      apartments,
-    };
-  },
-  methods: {
-    handleItemClick() {
-      console.log("Click item");
-      // console.log(event.target);
-    },
+    Footer,
+    Header,
   },
 };
 </script>
 
-<style module>
+<style lang="scss" scoped>
 #app {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content {
+  flex-grow: 1;
+  padding-top: 120px;
 }
 </style>

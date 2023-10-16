@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/scss/utils.scss";
+@import "../../assets/scss/utils.scss";
 .btn {
   display: inline-block;
   font-size: 18px;
