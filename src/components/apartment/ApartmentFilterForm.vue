@@ -6,7 +6,13 @@
       :value="city"
       @input="updateCity"
     />
-    <CustomInput :value="price" @input="updatePrice" placeholder="Ціна, від " />
+    <CustomInput
+      :value="price"
+      @input="updatePrice"
+      placeholder="Ціна, від "
+      error-message="Не може бути порожнім"
+      :rules="rules"
+    />
     <Button type="submit" class="form__submit">Підбір житла</Button>
   </form>
 </template>
@@ -15,6 +21,7 @@
 import CustomInput from "../shared/CustomInput.vue";
 import CustomSelect from "../shared/CustomSelect.vue";
 import Button from "../shared/Button.vue";
+import { isRequired, charLimit } from "../../utils/validationRules";
 
 export default {
   name: "ApartmentFilterForm",
@@ -30,6 +37,9 @@ export default {
     };
   },
   computed: {
+    rules() {
+      return [isRequired, charLimit(10)];
+    },
     cities() {
       return [
         { value: "", label: "Місто", selected: true },

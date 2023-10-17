@@ -1,12 +1,15 @@
 <template>
   <main class="apartment-page">
     <Container>
-      <div class="apartment-page__content">
+      <div v-if="apartment" class="apartment-page__content">
         <ApartmentsMainInfo :apartment="apartment" />
-        <ApartmentsOwner
-          class="apartment-page__owner"
-          :owner="apartment.owner"
-        />
+        <div class="apartment-page__additional-info">
+          <ApartmentsOwner
+            class="apartment-page__owner"
+            :owner="apartment.owner"
+          />
+          <Reviews :reviews="reviewsList" />
+        </div>
       </div>
     </Container>
   </main>
@@ -14,9 +17,12 @@
 
 <script>
 import Container from "../components/shared/Container";
-import apartments from "../components/apartment/apartments";
 import ApartmentsMainInfo from "../components/apartment/ApartmentsMainInfo";
 import ApartmentsOwner from "../components/apartment/ApartmentsOwner";
+import Reviews from "../components/reviews/Reviews";
+import reviewsList from "../components/reviews/reviews.json";
+// import { onMounted } from "vue";
+import { getApartmentsById } from "@/services/fetchApartments";
 
 export default {
   name: "ApartmentPage",
@@ -24,17 +30,42 @@ export default {
     Container,
     ApartmentsMainInfo,
     ApartmentsOwner,
+    Reviews,
+  },
+
+  data() {
+    return {
+      apartment: null,
+    };
   },
   computed: {
-    apartment() {
-      return apartments.find(
-        (apartment) => apartment.id === this.$route.params.id
-      );
+    reviewsList() {
+      return reviewsList;
     },
   },
+
+  async created() {
+    try {
+      const { id } = this.$route.params;
+      const { data } = await getApartmentsById(id);
+
+      this.apartment = data;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   mounted() {
+    console.log(this.$el);
     console.log(this.apartment);
   },
+
+  // setup() {
+  //   onMounted(() => {
+  //     console.log("OnMouted");
+  //     console.log(apartments);
+  //   });
+  // },
 };
 </script>
 
@@ -47,9 +78,11 @@ export default {
     align-items: flex-start;
   }
 
-  &__owner {
-    min-width: 350px;
+  &__additional-info {
     margin-left: 30px;
+    max-width: 350px;
+    flex-grow: 0;
+    flex-shrink: 1;
   }
 }
 </style>

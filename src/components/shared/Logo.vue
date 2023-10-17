@@ -1,8 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <a href="/">
-    <img src="../../../public/img/logo.svg" alt="" />
-  </a>
+  <img src="../../../public/img/logo.svg" alt="" />
 </template>
 
 <script>
