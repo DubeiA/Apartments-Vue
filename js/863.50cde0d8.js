@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue_tutorial"]=self["webpackChunkvue_tutorial"]||[]).push([[863],{6863:function(r,e,t){t.r(e),t.d(e,{default:function(){return f}});var n=t(3396);const a=r=>((0,n.dD)("data-v-4589cd8c"),r=r(),(0,n.Cn)(),r),c={class:"error"},u=a((()=>(0,n._)("h1",{class:"error__title"},"Page not found",-1))),o=[u];function s(r,e,t,a,u,s){return(0,n.wg)(),(0,n.iD)("section",c,o)}var d={name:"ErrorPage"},i=t(89);const l=(0,i.Z)(d,[["render",s],["__scopeId","data-v-4589cd8c"]]);var f=l}}]);
+//# sourceMappingURL=863.50cde0d8.js.map
