@@ -39,7 +39,7 @@ export default {
     } catch (error) {
       this.$notify({
         type: "error",
-        title: "Щось пішло не так",
+        title: "Сталась помилка",
         text: error.message,
       });
     }
