@@ -6,21 +6,59 @@
     </div>
     <img :src="apartment.imgUrl" alt="" class="apartment-main-info__img" />
     <p class="apartment-main-info__description">{{ apartment.descr }}</p>
+    <div class="apartment-main-info__btn">
+      <Button @click="handleApatrmentBookung" :loading="isLoading"
+        >Забронювати</Button
+      >
+    </div>
   </article>
 </template>
 
 <script>
-import Rating from "../StarRating";
+import Rating from "../shared/StarRating.vue";
+import Button from "../shared/Button.vue";
+import { bookApartment } from "../../services/orders";
 
 export default {
   name: "ApartmentsMainInfo",
   components: {
     Rating,
+    Button,
   },
   props: {
     apartment: {
       type: Object,
       required: true,
+    },
+  },
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
+  methods: {
+    async handleApatrmentBookung() {
+      const body = {
+        apartmentId: this.$route.params.id,
+        date: Date.now(),
+      };
+
+      try {
+        this.isLoading = true;
+        await bookApartment(body);
+        this.$notify({
+          type: "success",
+          title: "Замовлення добавлено",
+        });
+      } catch (error) {
+        this.$notify({
+          type: "error",
+          title: "Виникла помилка",
+          text: error.message,
+        });
+      } finally {
+        this.isLoading = false;
+      }
     },
   },
 };
@@ -48,6 +86,10 @@ export default {
   &__description {
     line-height: 1.3;
     margin-top: 30px;
+  }
+  &__btn {
+    margin-top: 20px;
+    text-align: center;
   }
 }
 </style>

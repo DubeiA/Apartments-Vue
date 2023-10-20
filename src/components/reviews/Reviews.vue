@@ -20,7 +20,7 @@
 
 <script>
 import ReviewsItem from "./reviews-item/ReviewsItem.vue";
-import Rating from "../StarRating";
+import Rating from "../shared/StarRating.vue";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Reviews",

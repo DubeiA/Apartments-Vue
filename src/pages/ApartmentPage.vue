@@ -1,17 +1,19 @@
 <template>
   <main class="apartment-page">
-    <Container>
-      <div v-if="apartment" class="apartment-page__content">
-        <ApartmentsMainInfo :apartment="apartment" />
-        <div class="apartment-page__additional-info">
-          <ApartmentsOwner
-            class="apartment-page__owner"
-            :owner="apartment.owner"
-          />
-          <Reviews :reviews="reviewsList" />
+    <SectionHeaderSpacer>
+      <Container>
+        <div v-if="apartment" class="apartment-page__content">
+          <ApartmentsMainInfo :apartment="apartment" />
+          <div class="apartment-page__additional-info">
+            <ApartmentsOwner
+              class="apartment-page__owner"
+              :owner="apartment.owner"
+            />
+            <Reviews :reviews="reviewsList" />
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </SectionHeaderSpacer>
   </main>
 </template>
 
@@ -23,6 +25,7 @@ import Reviews from "../components/reviews/Reviews";
 import reviewsList from "../components/reviews/reviews.json";
 // import { onMounted } from "vue";
 import { getApartmentsById } from "@/services/fetchApartments";
+import SectionHeaderSpacer from "@/components/shared/SectionHeaderSpacer.vue";
 
 export default {
   name: "ApartmentPage",
@@ -31,6 +34,7 @@ export default {
     ApartmentsMainInfo,
     ApartmentsOwner,
     Reviews,
+    SectionHeaderSpacer,
   },
 
   data() {
@@ -54,18 +58,6 @@ export default {
       console.log(error);
     }
   },
-
-  mounted() {
-    console.log(this.$el);
-    console.log(this.apartment);
-  },
-
-  // setup() {
-  //   onMounted(() => {
-  //     console.log("OnMouted");
-  //     console.log(apartments);
-  //   });
-  // },
 };
 </script>
 

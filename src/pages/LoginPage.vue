@@ -1,15 +1,19 @@
 <template>
   <main class="login">
-    <Login />
+    <AuthSection>
+      <Login />
+    </AuthSection>
   </main>
 </template>
 
 <script>
-import Login from "@/components/Login/Login.vue";
+import Login from "@/components/auth/login";
+import AuthSection from "../components/auth/AuthSection";
 export default {
   name: "LoginPage",
   components: {
     Login,
+    AuthSection,
   },
 };
 </script>

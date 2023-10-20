@@ -25,7 +25,11 @@ export default {
       inputValue: this.value,
     };
   },
-  inject: ["form"],
+  inject: {
+    form: {
+      default: null,
+    },
+  },
   props: {
     errorMessage: {
       type: String,
@@ -76,8 +80,8 @@ export default {
       return this.isValid;
     },
     reset() {
-      // this.inputValue = "";
-      this.$emit("input", "");
+      this.inputValue = "";
+      // this.$emit("input", "");
     },
   },
 };
@@ -89,6 +93,7 @@ export default {
 .wrapper-input {
   position: relative;
   display: inline-flex;
+  margin-bottom: 20px;
 }
 .custom-input {
   min-height: 40px;
@@ -97,7 +102,7 @@ export default {
   outline: none;
   line-height: inherit;
   padding: 8px 15px;
-  max-width: 220px;
+  // margin-bottom: 20px;
   width: 100%;
 
   &::placeholder {

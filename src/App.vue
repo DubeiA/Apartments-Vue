@@ -1,22 +1,34 @@
 <template>
   <div id="app">
+    <Notification />
     <div class="content">
       <Header />
       <router-view></router-view>
     </div>
+
     <Footer />
   </div>
 </template>
 
 <script>
 import Footer from "./components/shared/Footer.vue";
-import Header from "./components/shared/Header.vue";
+import Header from "./components/headers/Header";
+import Notification from "./components/notification";
 
 export default {
   name: "App",
   components: {
     Footer,
     Header,
+    Notification,
+  },
+  data() {
+    return {
+      isNotificationsShown: false,
+    };
+  },
+  mounted() {
+    console.log(this.$store.getters["auth/isloggedIn"]);
   },
 };
 </script>
@@ -30,8 +42,8 @@ export default {
   flex-direction: column;
   min-height: 100vh;
 }
+
 .content {
   flex-grow: 1;
-  padding-top: 120px;
 }
 </style>

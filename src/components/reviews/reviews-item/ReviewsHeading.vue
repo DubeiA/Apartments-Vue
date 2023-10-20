@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Rating from "../../StarRating";
+import Rating from "../../shared/StarRating";
 import Avatar from "./ReviewsAvatar";
 
 export default {

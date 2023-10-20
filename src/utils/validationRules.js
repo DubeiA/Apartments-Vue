@@ -16,8 +16,6 @@ export const emailValidation = (val) => ({
 });
 
 export const passwordValidation = (val) => ({
-  hasPassed:
-    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(val),
-  message:
-    "Пароль повинен мати один символ , одну велику букву , мінімум 8 символів",
+  hasPassed: /^(?=.*[A-Za-z])(?=.*[\d])[a-zA-Z0-9]{7,256}$/.test(val),
+  message: "Пароль повинен мати один символ , одну велику букву",
 });

@@ -47,10 +47,10 @@ export default {
   margin: 0 3px;
   flex-shrink: 0;
   &--colored {
-    background: url("../../public/img/star.svg") center no-repeat;
+    background: url("../../../public/img/star.svg") center no-repeat;
   }
   &--outline {
-    background: url(../../public/img/star-stroke.svg) center no-repeat;
+    background: url(../../../public/img/star-stroke.svg) center no-repeat;
   }
 }
 
